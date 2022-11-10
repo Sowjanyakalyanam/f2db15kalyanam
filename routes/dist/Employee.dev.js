@@ -10,5 +10,14 @@ router.get('/', function (req, res, next) {
     title: 'Search Results Employee'
   });
 });
+
+var express = require('express');
+
+var Employee_controlers = require('../controllers/Employee');
+
+var router = express.Router();
+/* GET costumes */
+
+router.get('/', Employee_controlers.Employee_view_all_Page);
 module.exports = router;
-//# sourceMappingURL=Employee.dev.js.map
+//# sourceMappingURL=employee.dev.js.map
