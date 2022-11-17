@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <h1></h1>
+    <form id="EmployeeForm" action="/resource/Employee" method="POST">
+      <div class="form-group">
+        <label class="EmployeeAttr" for="EmpName">Employee type</label>
+        <input id="EmpName" type="text" name="EmpName">
+      </div>
+      <div class="form-group">
+        <label class="EmployeeAttr" for="EmpType">Employee EmpType</label>
+        <input id="EmpType" type="text" name="EmpType">
+      </div>
+      <div class="form-group">
+        <label class="EmployeeAttr" for="EmpSal">Employee EmpSal</label>
+        <input id="EmpSal" type="number" name="EmpSal">
+      </div>
+      <input type="submit">
+    </form>
+    <script>
+      document.forms['EmployeeForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+      method: 'POST',
+      body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+      return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+      alert("Save succeded")
+      // TODO handle body
+      }).catch((error) => {
+      // TODO handle error
+      alert("Save failed " + error )
+      });
+      });
+    </script>
+  </body>
+</html>

@@ -1,9 +1,9 @@
 extends layout
 block content
   h1= title
-  form(id='FormEmployee', action="/resource/Employee", method="POST")
+  form(id='EmployeeForm', action="/resource/Employee", method="POST")
     div.form-group
-        label.EmployeeAttr(for='EmpName') Employee EmpName
+        label.EmployeeAttr(for='EmpName') Employee type
         input#EmpName(type='text', name='EmpName')
     div.form-group
         label.EmployeeAttr(for='EmpType') Employee EmpType
