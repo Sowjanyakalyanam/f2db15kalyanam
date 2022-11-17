@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <h1></h1>
+    <h2>No instance to delete </h2>
+    <script>
+      function cancel() { 
+        // Go back to the home page for the Employee collection 
+        window.location.href='/Employee' 
+      } 
+    </script>
+    <script>
+      function deleteOnid() { 
+        console.log("starting delete") 
+        // delete first 
+        fetch(actionid, { 
+          method: 'DELETE'      //Don't need a body for the delete 
+        }).then((resp) => { 
+          return resp.json(); // or resp.text() or whatever the server sends 
+        }).then((body) => { 
+          alert("Delete succeded") 
+          window.location.href='/Employee' 
+          // TODO handle body 
+        }).catch((error) => { 
+          // TODO handle error 
+          alert("Delete failed " + error ) 
+        }); 
+      }
+    </script>
+  </body>
+</html>
