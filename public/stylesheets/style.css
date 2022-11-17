@@ -6,3 +6,17 @@ body {
 a {
   color: #00B7FF;
 }
+
+.EmployeeAttr{
+background-color: blanchedalmond;
+width: 100px;
+}
+
+.design{
+  color: black;
+  background-color: goldenrod;
+  padding: 10px;
+  text-align: center;
+  
+  
+}
