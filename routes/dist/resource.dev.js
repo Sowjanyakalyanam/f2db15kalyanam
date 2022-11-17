@@ -22,5 +22,7 @@ router.put('/Employee/:id', Employee_controller.Employee_update_put); // GET req
 router.get('/Employee/:id', Employee_controller.Employee_detail); // GET request for list of all Employee items.
 
 router.get('/Employee', Employee_controller.Employee_list);
-module.exports = router;
+module.exports = router; // GET request for one costume.
+
+router.get('/Employee/:id', Employee_controller.Employee_detail);
 //# sourceMappingURL=resource.dev.js.map

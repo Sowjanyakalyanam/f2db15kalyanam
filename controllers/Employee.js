@@ -4,9 +4,16 @@ exports.Employee_list = function(req, res) {
  res.send('NOT IMPLEMENTED: Employee list');
 };
 // for a specific Costume.
-exports.Employee_detail = function(req, res) {
- res.send('NOT IMPLEMENTED: Employee detail: ' + req.params.id);
-};
+exports.Employee_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await Employee.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+   };
 // Handle Costume create on POST.
 exports.Employee_create_post = function(req, res) {
  res.send('NOT IMPLEMENTED: Employee create POST');
@@ -17,10 +24,28 @@ exports.Employee_delete = function(req, res) {
 };
 // Handle Costume update form on PUT.
 exports.Employee_update_put = function(req, res) {
- res.send('NOT IMPLEMENTED: Employee update PUT' + req.params.id);
+ res.send('NOT IMPLEMENTED: Employee update PUT' + req.params.id);Employee
 };
 // VIEWS
-
+// Handle Costume update form on PUT.
+exports.Employee_update_put = async function(req, res) {
+ console.log(`update on id ${req.params.id} with body
+${JSON.stringify(req.body)}`)
+ try {
+ let toUpdate = await Employee.findById( req.params.id)
+ // Do updates of properties
+ if(req.body.EmpName) toUpdate.EmpName = req.body.EmpName;
+ if(req.body.EmpType) toUpdate.EmpType = req.body.EmpType;
+ if(req.body.EmpSal) toUpdate.EmpSal = req.body.EmpSal;
+ let result = await toUpdate.save();
+ console.log("Sucess " + result)
+ res.send(result)
+ } catch (err) {
+ res.status(500)
+ res.send(`{"error": ${err}: Update for id ${req.params.id}
+failed`);
+ }
+};
    // List of all Costumes
 exports.Employee_list = async function(req, res) {
     try{
@@ -64,67 +89,3 @@ exports.Employee_create_post = async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
 }
-// Handle Employee delete on DELETE.
-exports.Employee_delete = async function(req, res) {
-    console.log("delete " + req.params.id)
-    try {
-    result = await Employee.findByIdAndDelete( req.params.id)
-    console.log("Removed " + result)
-    res.send(result)
-    } catch (err) {
-    res.status(500)
-    res.send(`{"error": Error deleting ${err}}`);
-    }
-    };
-// Handle a show one view with id specified by query
-exports.Employee_view_one_Page = async function(req, res) {
-    console.log("single view for id " + req.query.id)
-    try{
-    result = await Employee.findById( req.query.id)
-    res.render('Employeedetail',
-    { title: 'Employee Detail', toShow: result });
-    }
-    catch(err){
-    res.status(500)
-    res.send(`{'error': '${err}'}`);
-    }
-    };
-// Handle building the view for creating a Employee.
-// No body, no in path parameter, no query.
-// Does not need to be async
-exports.Employee_create_Page = function(req, res) {
-    console.log("create view")
-    try{
-    res.render('Employeecreate', { title: 'Employee Create'});
-    }
-    catch(err){
-    res.status(500)
-    res.send(`{'error': '${err}'}`);
-    }
-    };
-// Handle building the view for updating a Employee.
-// query provides the id
-exports.Employee_update_Page = async function(req, res) {
-    console.log("update view for item "+req.query.id)
-    try{
-    let result = await Employee.findById(req.query.id)
-    res.render('Employeeupdate', { title: 'Employee Update', toShow: result });
-    }
-    catch(err){
-    res.status(500)
-    res.send(`{'error': '${err}'}`);
-    }
-    };
-// Handle a delete one view with id from query
-exports.Employee_delete_Page = async function(req, res) {
-    console.log("Delete view for id " + req.query.id)
-    try{
-    result = await Employee.findById(req.query.id)
-    res.render('Employeedelete', { title: 'Employee Delete', toShow:
-    result });
-    }
-    catch(err){
-    res.status(500)
-    res.send(`{'error': '${err}'}`);
-    }
-    };
