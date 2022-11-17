@@ -1,0 +1,23 @@
+extends layout
+block content
+  h1= title
+  if (toShow == null) 
+    h2 No instance to delete 
+  else    
+    - let Employeeid = toShow._id
+    - let EmpName = toShow.EmpName
+    - let EmpType = toShow.EmpType
+    - let EmpSal = toShow.EmpSal
+    div
+    div.row
+    div(class='EmployeeAttr mr-3') Employee ID is:
+    div #{Employeeid}
+    div.row
+    div(class='EmployeeAttr mr-3') Employee Type is:
+    div #{EmpName}
+    div.ro
+    div #{EmpType}
+    div.row
+    div(class='EmployeeAttr mr-3') Employee name is:
+    div #{EmpSal}w
+    div(class='EmployeeAttr mr-3') Employee Size is:
