@@ -1,10 +1,10 @@
 extends layout
 
 block content
-  h1(style="color:white background-color:black")=title
+  h1=title
   div(class='container' style="text-align: center;")
-        button.btn( style="margin: 5px; width: 120px;", onclick=`dispatch(\"/Employee/create\")`) Create
-  - var resu = [{"EmpName": "Sowji", "EmpType": "Temporary", "EmpSal": 1000},{"EmpName": "Nithin", "EmpType": "permanent", "EmpSal": 2000},{"EmpName": "Kusuma", "EmpType": "Permanent", "EmpSal": 3000}]
+        button.btn(onclick=`dispatch(\"/Employee/create\")`) Create
+  - var EmpPage = [{"EmpName": "Sowji", "EmpType": "Temporary", "EmpSal": 1000},{"EmpName": "Nithin", "EmpType": "permanent", "EmpSal": 2000},{"EmpName": "Kusuma", "EmpType": "Permanent", "EmpSal": 3000}]
   h1= title
   - let result=results
   div(class="container-fluid")
@@ -14,11 +14,6 @@ block content
               button.btn(onclick=`dispatch(\"/Employee/detail?id=${item._id}\")`) View
               button.btn(onclick= `dispatch(\"/Employee/update?id=${item._id}\")`) Update
               button.btn(onclick= `dispatch(\"/Employee/delete?id=${item._id}\")`) Delete
-              
-  script.
-      function buy(index){
-         alert("you purchased item "+(index+1))
-      }
   script.
       function dispatch(path){
       window.location.href=path
