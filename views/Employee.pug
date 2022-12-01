@@ -10,7 +10,7 @@ block content
   div(class="container-fluid")
     div(class="row m-1")
         each item in results
-            div(class="row-sm-2", class="m-1") Employee Name: #{item.EmpName}<br>Employee Type: #{item.EmpSal}<br>(Employee size: #{item.EmpType})<br>
+            div(class="row-sm-2", class="m-1") Employee Name: #{item.EmpName}<br>Employee Type: #{item.EmpType}<br>(Employee Salary: #{item.EmpSal})<br>
               button.btn(onclick=`dispatch(\"/Employee/detail?id=${item._id}\")`) View
               button.btn(onclick= `dispatch(\"/Employee/update?id=${item._id}\")`) Update
               button.btn(onclick= `dispatch(\"/Employee/delete?id=${item._id}\")`) Delete
